@@ -1,0 +1,35 @@
+name: song-api-publisher
+
+on:
+  push:
+    paths:
+      - '.github/workflows/song_api_publisher.yaml'
+      - 'functions/song_api_publisher/**'
+      - 'domain.properties'
+    branches-ignore:
+      - 'release'
+  pull_request:
+    paths:
+      - '.github/workflows/song_api_publisher.yaml'
+      - 'functions/song_api_publisher/**'
+      - 'domain.properties'
+    branches-ignore:
+      - 'release'
+
+  workflow_dispatch:
+
+
+jobs:
+  python-song-api-publisher:
+    uses: ucl-isd/easikit-core/.github/workflows/python-core-aws-workflow.yaml@main
+    with:
+      FUNCTION_NAME: song_api_publisher
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      EASIKIT_PRIVATE_KEY: ${{secrets.EASIKIT_PRIVATE_KEY}}
+      VAULT_KEY: ${{secrets.VAULT_KEY}}
+      AZURE_TENANT: ${{secrets.AZURE_TENANT}}
+      SERVICE_PRINCIPAL_APP_ID: ${{secrets.SERVICE_PRINCIPAL_APP_ID}}
+      SERVICE_PRINCIPAL_KEY: ${{secrets.SERVICE_PRINCIPAL_KEY}}
+
