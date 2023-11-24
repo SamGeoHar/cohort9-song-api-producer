@@ -21,12 +21,12 @@ class FullHandlerTestCase(unittest.TestCase):
         event = test_setup.event("api-gateway-event-sample")
 
         r = handler.handler(event)
-        #print(json.loads(r["body"]))
         
         self.assertEqual(r['statusCode'], 200, "Status code should be 200.")
 
         body = json.loads(r["body"])
-        self.assertIn("message", body, "Body should contain 'message'")
+        self.assertIn("response", body, "Body should contain 'response'")
+        self.assertIn("song_collection", body['response'], "Body should contain 'song_collection' in the respons object")
 
 
     def test_full_handler_req_invalid(self):

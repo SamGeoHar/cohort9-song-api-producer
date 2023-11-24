@@ -1,0 +1,1 @@
+WARNING [2023-11-24T12:35:03Z]: The default VPC for lambas is changed, please see documentation:  https://github.com/ucl-isd/easikit-terraform-lambda#warning-default-vpc-change:

@@ -1,0 +1,37 @@
+name: deploy-default-dev
+
+on:
+  push:
+    paths:
+      - '.github/workflows/deploy_default_dev.yaml'
+      - 'terraform/default/modules/**'
+      - 'terraform/default/targets/dev/**'
+      - 'terraform/default/deploy.properties'
+    # only attempts merges for stable branches
+    # when merging to the main brainch for that env
+    ##STABLE_ENVS## branches:
+    ##STABLE_ENVS##   - main # stable branch
+
+  pull_request:
+    paths:
+      - '.github/workflows/deploy_default_dev.yaml'
+      - 'terraform/default/modules/**'
+      - 'terraform/default/targets/dev/**'
+      - 'terraform/default/deploy.properties'
+
+  workflow_dispatch:
+
+jobs:
+  deploy-default-dev:
+    uses: ucl-isd/easikit-core/.github/workflows/deploy-core-workflow.yaml@main
+    with:
+      DEPLOY_MODULE: default
+      DEPLOY_TARGET: dev
+      ENVIRONMENT_TYPE: nonprod
+      AUTO_DESTROY: false
+      SKIP_APPLY: false
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      EASIKIT_PRIVATE_KEY: ${{secrets.EASIKIT_PRIVATE_KEY}}
+      VAULT_KEY: ${{secrets.VAULT_KEY}}

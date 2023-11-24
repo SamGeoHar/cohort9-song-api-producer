@@ -1,1 +1,4 @@
 LOG_LEVEL=DEBUG
+TARGET_CLIENT_ID=5cdde82a-6606-4dec-85a4-302da1bf2e18
+CLIENT_ID=572378f3-4566-4474-aa68-a21fd6d3490e
+BACKEND_URI=https://easikit.mesh-dev.ucl.ac.uk/scenario/v0.1/
